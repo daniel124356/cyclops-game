@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class playerMovement : NetworkBehaviour {
 
-    public float speed = 18;
+    public float speed = 1000;
 
     public Rigidbody rb;
 
