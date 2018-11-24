@@ -27,12 +27,18 @@ public class playerMovement : NetworkBehaviour {
 
 
 
-        float hAxis = Input.GetAxis("Horizontal");
+        //float hAxis = Input.GetAxis("Horizontal");
         float vAxis = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(hAxis, 0, vAxis) * speed * Time.deltaTime;
+        if(Input.GetKey(KeyCode.W))
+        {
+            Debug.Log("MOVE OFORWARD CUNT");
+            rb.AddForce(transform.forward * speed);
+        }
 
-        rb.MovePosition(transform.position + movement);
+        //Vector3 movement = new Vector3(hAxis, 0, vAxis) * speed * Time.deltaTime;
+
+        //rb.MovePosition(transform.position + movement);
 
 
         if(isLocalPlayer)
@@ -45,8 +51,8 @@ public class playerMovement : NetworkBehaviour {
             }
         } else
         {
-            transform.position = Vector3.Lerp(transform.position, realPosition, test);
-            transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, test);
+            transform.position = Vector3.Lerp(transform.position, realPosition, Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, Time.deltaTime);
             //return;
         }
 	}
