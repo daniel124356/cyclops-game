@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 691976755}
   - component: {fileID: 691976754}
   m_Layer: 5
-  m_Name: loadLevel
+  m_Name: loadGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
