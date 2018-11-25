@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 114114585309548126}
   - component: {fileID: 114904149436952866}
   - component: {fileID: 114077554972070260}
-  - component: {fileID: 136283303042839410}
+  - component: {fileID: 136763358121508328}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -374,7 +374,7 @@ MonoBehaviour:
   canJump: 1
   jumpHeight: 2
   rb: {fileID: 54958192687618074}
---- !u!136 &136283303042839410
+--- !u!136 &136763358121508328
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
