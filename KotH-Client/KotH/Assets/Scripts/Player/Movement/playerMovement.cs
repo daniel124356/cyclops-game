@@ -5,10 +5,14 @@ using UnityEngine.Networking;
 
 public class playerMovement : NetworkBehaviour {
 
-    public float speed = 1000;
+    public float speed = 10.0f;
+    public float gravity = 10.0f;
+    public float maxVelocityChange = 10.0f;
+    public bool canJump = true;
+    public float jumpHeight = 2.0f;
+    private bool grounded = false;
 
     public Rigidbody rb;
-    public float test = 0.1f;
 
 
     [SyncVar]
@@ -19,27 +23,57 @@ public class playerMovement : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-		
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
 
-
-        //float hAxis = Input.GetAxis("Horizontal");
-        float vAxis = Input.GetAxis("Vertical");
-
-        if(Input.GetKey(KeyCode.W))
+    void FixedUpdate()
+    {
+        if(grounded)
         {
-            Debug.Log("MOVE FORWARD CUNT");
-            rb.AddForce(transform.forward * speed);
+            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            targetVelocity = transform.TransformDirection(targetVelocity);
+            targetVelocity *= speed;
+
+            Vector3 velocity = rb.velocity;
+            Vector3 velocityChange = (targetVelocity - velocity);
+            velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+            velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+            velocityChange.y = 0;
+            rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
+            if (canJump && Input.GetButton("Jump"))
+            {
+                rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+            }
         }
 
-        //Vector3 movement = new Vector3(hAxis, 0, vAxis) * speed * Time.deltaTime;
+        rb.AddForce(new Vector3(0, -gravity * rb.mass, 0));
 
-        //rb.MovePosition(transform.position + movement);
+        grounded = false;
+    }
 
+    void OnCollisionStay()
+    {
+        grounded = true;
+    }
+
+    float CalculateJumpVerticalSpeed()
+    {
+        return Mathf.Sqrt(2 * jumpHeight * gravity);
+    }
+
+
+
+    // Update is called once per frame
+    void Update () {
+        /*
+        float hAxis = Input.GetAxis("Horizontal");
+        float vAxis = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(hAxis, 0, vAxis) * speed * Time.deltaTime;
+
+        rb.MovePosition(transform.position + movement);
+        */
 
         if(isLocalPlayer)
         {

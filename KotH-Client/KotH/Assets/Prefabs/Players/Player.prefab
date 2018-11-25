@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114937741318500176}
   - component: {fileID: 114114585309548126}
   - component: {fileID: 114904149436952866}
+  - component: {fileID: 114077554972070260}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -102,7 +103,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300882054134808}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.0974298, y: 1, z: 10.86568}
+  m_LocalPosition: {x: 2.0108712, y: 1, z: 14.562364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4282258414492320}
@@ -268,6 +269,21 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1209857149679220}
   m_Enabled: 1
+--- !u!114 &114077554972070260
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1300882054134808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073503ce2f6aa7740b151acc8ca5a20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentsToDisable:
+  - {fileID: 114937741318500176}
+  - {fileID: 20901905913852144}
+  - {fileID: 114132579614601884}
 --- !u!114 &114114585309548126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -325,7 +341,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300882054134808}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -352,8 +368,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  gravity: 10
+  maxVelocityChange: 10
+  canJump: 1
+  jumpHeight: 2
   rb: {fileID: 54958192687618074}
-  test: 0.1
 --- !u!136 &136988505407929664
 CapsuleCollider:
   m_ObjectHideFlags: 1
