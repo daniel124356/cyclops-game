@@ -32,7 +32,7 @@ public class playerMovement : NetworkBehaviour {
 
         if(Input.GetKey(KeyCode.W))
         {
-            Debug.Log("MOVE OFORWARD CUNT");
+            Debug.Log("MOVE FORWARD CUNT");
             rb.AddForce(transform.forward * speed);
         }
 
