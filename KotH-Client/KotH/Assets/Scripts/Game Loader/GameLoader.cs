@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LevelLoader : MonoBehaviour {
+public class GameLoader : MonoBehaviour {
 
 	public GameObject loadingScreen;
 	public Slider slider;
